@@ -1,9 +1,13 @@
 import streamlit as st
 import re
+import os
 from fpdf import FPDF
 from ingest import read_pdf, chunk_text
 from vector_store import embed_chunks, search
 from notes import format_as_notes, summarize_document
+
+# Make sure the data folder exists (it's gitignored, so fresh deployments won't have it)
+os.makedirs("data", exist_ok=True)
 
 # ----- Basic page setup -----
 st.set_page_config(
